@@ -110,6 +110,29 @@ namespace Day1Intro
                     break;
             }
 
+            //for (var i = 4; i <= 4; i++)
+            //{
+            //    Console.WriteLine(i);
+            //    i--;
+            //}
+
+            for (var i = 4; i != 4; i--)
+            {
+                Console.WriteLine(i);
+            }
+
+            while (true)
+            {
+                ////
+            }
+
+            do
+            {
+                // runs first time regardless of the condition
+                // Condition determines to run next and other times.
+            }
+            while (true);
+
             Console.WriteLine("Hello World");
 
             Console.ReadKey();
