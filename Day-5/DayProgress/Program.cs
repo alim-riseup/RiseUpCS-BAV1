@@ -8,85 +8,76 @@ namespace DayProgress
 {
     class Program
     {
-        static void PrintHelloWorld()
+
+        class Example
         {
-            Console.WriteLine("Hello World");
+            public static int i; // one time
+            public int X;
+            public static int[] ArrayStaticResult = new int[15]; // 0-14
         }
 
-        static void Print(string parameter1, string paramter2)
+        static int[] SampleFunction()
         {
-            Console.WriteLine(parameter1 + " " + paramter2);
+            var example = new Example();
+            // int i = 0;
+
+            var arrayResult = new int[2];
+
+            Example.i++;
+            example.X++;
+            // i++
+
+            arrayResult[0] = Example.i;
+            arrayResult[1] = example.X;
+
+            return arrayResult; // 1
         }
 
-        static double SumOf(int x , double y)
+        static int[] SampleFunction2()
         {
-            return x + y;
+            var example = new Example();
+            // int i = 0;
+
+            var arrayResult = Example.ArrayStaticResult;
+
+            // i++
+
+            arrayResult[Example.i++] = Example.i;
+            arrayResult[Example.i++] = example.X;
+
+
+            // Example.i++; // 0, 1, 2, 3 ,s tatic
+            example.X++; // variable, 1
+
+            return arrayResult; // 1
         }
 
-        static double SumOf2AddWithX(ref int x, double y = 3)
+        static void PrintArray(int[] array)
         {
-            x = x + 2;
-            return x + y;
-        }
+            Console.WriteLine($"Printing a new array:");
 
-        static int SumWithParameters(params int[] parameters)
-        {
-            int i = 0;
-            var sumResult = 0;
-
-            for (i = 0; IsParameterConditionOkay(i, parameters.Length); i++)
+            for (int i = 0; i < array.Length; i++)
             {
-                var item = parameters[i]; // 0,1,2...
-                sumResult = sumResult + item;
+                Console.WriteLine($"[{i}] : {array[i]}");
             }
-
-            return sumResult;
-        }
-
-        static bool IsParameterConditionOkay(int currentIndex, int length)
-        {
-            return currentIndex < length;
-        }
-
-        static int ToInt(double x)
-        {
-            return (int) x;
         }
 
         static void Main(string[] args)
         {
-            // PrintHelloWorld();
+            //PrintArray(SampleFunction2());
+            //PrintArray(SampleFunction2());
+            //PrintArray(SampleFunction2());
+            //PrintArray(SampleFunction2());
 
-            Print("Hello", "World");
+            //var stringExmaple = new StringExample();
 
-            var sumOfOneTwo = SumOf(1, 2);
-            var toInt = ToInt(sumOfOneTwo);
+            //stringExmaple.HasStringTest();
 
-            var numberToString = sumOfOneTwo.ToString();
+            var recursionExample = new RecursionExample();
 
-            Print("1 + 2 =", numberToString);
-
-            var summingExample = SumWithParameters(1, 2 , 3, 4, 5 , 6);
-
-            Print("SumWithParameters(1, 2 , 3, 4, 5 , 6) =", summingExample.ToString());
-            int w = 2;
-
-            Print("w =", w.ToString());
-            var someNumber = SumOf2AddWithX(ref w); // this x is get cloned.
-            Print("SumOf2AddWithX(2, 3) =", someNumber.ToString());
-            Print("w =", w.ToString());
-
-            int[] wArray;
-
-            CreateArray(out wArray);
-
+            recursionExample.FactorialCallTest();
 
             Console.ReadLine();
-        }
-
-        private static void CreateArray(out int[] wArray)
-        {
-            wArray = new int[10];            
         }
     }
 }
